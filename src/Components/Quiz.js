@@ -4,65 +4,77 @@ import Question from "./Question";
 const Quiz = () => {
 
     const [questions,setQuestions] = useState([])
-    const [checkingAnswer,setCheckingAnswer] = useState(false)
     const [score,setScore] = useState(0)
     const [response,setResponse] = useState(0)
+    const [answers,setAnswers] = useState(Array(10).fill(0))
+    const [allanswered,setAllAnswered] = useState(false)
+    const [checkingAnswer,setCheckingAnswer] = useState(false)
 
-
-    const computeAnswer = (correct,answer) => {
-        if(correct === answer){
-            setScore(prev => (prev + 1))
-        }
-            setResponse(prev => (prev + 1))
+    const userResponded = () => {
+        setResponse(prev => (prev + 1))
+        console.log(response)
     }
 
-    function shuffle(incorrect,correct){
-        const array = [...incorrect,correct]
-
-    for(let i = 0; i < array.length; i++){
-        let j = Math.floor(Math.random() * array.length)
-        let temp = array[i]
-        array[i] = array[j]
-        array[j] = temp
-        }
-        return array
+    const updateSelection = (index,selection) =>{
+        setAnswers(prev =>{
+            prev[index] = selection
+            console.log(prev)
+            return prev
+        })
     }
+
+    useEffect(() =>{
+        const allSelected = answers.every((answer) =>{
+            return answer !== 0
+        })
+
+        if(allSelected){
+            setAllAnswered(true)
+        }
+        console.log(allanswered)
+
+    },[response])
+
 
     useEffect(() =>{
         getQuestions()
     },[])
     
     const getQuestions = () => {
-        if(!questions) { return };
         fetch("https://opentdb.com/api.php?amount=10&category=22&difficulty=easy&type=multiple")
             .then(response => (response.json()))
             .then(data => setQuestions(data.results))
             .catch(error => console.log(error))
     }
         
-    console.log(questions)
-        
-    const questionItems = questions.map((question,index) =>{
+    const questionItems = questions && questions.map(({question,correct_answer,incorrect_answers},index) =>{
         return <Question key = {index}
-        question = {question.question}
-        correct = {question.correct_answer}
-        total = {shuffle(question.incorrect_answers,question.correct_answer)}
+        question = {question}
+        correct = {correct_answer}
+        incorrect = {incorrect_answers}
+        updateSelection = {(selection) => {updateSelection(index,selection)}}
+        selectedValue = {answers[index]}
+        userResponded = {userResponded}
         checkingAnswer = {checkingAnswer}
-        selected = {select => computeAnswer(select,question.correct_answer)}
         />
     })
 
-    function checkAnswer(){
+    const checkAnswer = () =>{
         setCheckingAnswer(true)
+        questions.forEach(({correct_answer},index) =>{
+            if(answers[index] === correct_answer){
+                setScore(prev => (prev + 1))
+            }
+        })
     }
 
     return ( 
     <div className="questionContainer">
         <div className="questionPage">
             {questionItems}
-            <button className="btn check" onClick = {checkAnswer}>{checkingAnswer ? "Play Again" :  "Check Answers"}</button>
+            {allanswered && <button className="btn check" onClick={checkAnswer}>Check Answers</button>}
+            {checkingAnswer && <h2 className="score">You Scored {score} out of 10</h2>}
         </div>
-        {checkingAnswer && <p>You scored {score} out of 10</p>}
     </div>
     );
 }

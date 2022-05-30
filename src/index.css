@@ -121,3 +121,8 @@ body{
   font-weight: 300;
   color: rgba(41, 50, 100, .8); 
 }
+
+.score{
+  padding: 2em;
+  align-self: center;   
+}
