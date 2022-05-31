@@ -10,7 +10,8 @@ On pressing submit correct answers are highlighted in green and the incorrect ar
 
 ## [Check my App](https://jovial-bombolone-04198f.netlify.app/)
 
-<img src="./Images/jovial-bombolone-04198f.netlify.app_.png" width="`250" height="250">
-<img src="./Images/jovial-bombolone-04198f.netlify.app_%20(1).png" width="`250" height="250">
-<img src="./Images/jovial-bombolone-04198f.netlify.app_%20(2).png" width="`250" height="250">
-
+<p float = "left">
+    <img src="./Images/jovial-bombolone-04198f.netlify.app_.png" width="`350" height="350"/>
+    <img src="./Images/jovial-bombolone-04198f.netlify.app_%20(1).png" width="`350" height="350"/>
+    <img src="./Images/jovial-bombolone-04198f.netlify.app_%20(2).png" width="`350" height="350"/>
+</p>
