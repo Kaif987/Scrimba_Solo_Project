@@ -8,8 +8,8 @@ This app pulls out questions from [Open Trivia Database](https://opentdb.com/api
 On pressing submit correct answers are highlighted in green and the incorrect are highlighted in red and also the score is displayed in the end.
 
 
-[## Check my App](https://jovial-bombolone-04198f.netlify.app/)
+##[Check my App](https://jovial-bombolone-04198f.netlify.app/)
 
-![Screenshot of my Quiz App](./Images/jovial-bombolone-04198f.netlify.app_%20.png)
-![Screenshot of my Quiz App](./Images/jovial-bombolone-04198f.netlify.app_%20(1).png)
-![Screenshot of my Quiz App](./Images/jovial-bombolone-04198f.netlify.app_%20(2).png)
+![Screenshot of my Quiz App](./Images/jovial-bombolone-04198f.netlify.app_.png =250x250)
+![Screenshot of my Quiz App](./Images/jovial-bombolone-04198f.netlify.app_%20(1).png =250x250)
+![Screenshot of my Quiz App](./Images/jovial-bombolone-04198f.netlify.app_%20(2).png =250x250)
